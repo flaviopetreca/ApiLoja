@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ApiLoja.Controllers
 {
+    //bla bal bla
     [Route("api/[controller]")]
     [ApiController]
     public class TelefonesController : ControllerBase
