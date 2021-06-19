@@ -1,4 +1,5 @@
 # Build and Release Folders
+
 bin-debug/
 bin-release/
 [Oo]bj/
@@ -6,6 +7,8 @@ bin-release/
 
 # Other files and folders
 .settings/
+/ApiLoja/.vs
+/ApiLoja/.vs/ApiLoja/v15/Server/sqlite3
 
 # Executables
 *.swf
