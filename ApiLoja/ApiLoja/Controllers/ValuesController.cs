@@ -10,20 +10,20 @@ namespace ApiLoja.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
-
-        readonly Context _context;
-        readonly EmailsServices _service;
-        readonly ClientesServices _Cservice;
-        readonly TelefonesServices _Tservice;
-        readonly ClienteContatoServices _CCservice;
+        
+        //readonly Context _context;
+        //readonly EmailsServices _service;
+        //readonly ClientesServices _Cservice;
+        //readonly TelefonesServices _Tservice;
+        //readonly ClienteContatoServices _CCservice;
         
         public ValuesController(Context context)
         {
-            _context = context;
-            _service = new EmailsServices(_context);
-            _Cservice = new ClientesServices(_context);
-            _Tservice = new TelefonesServices(_context);
-            _CCservice = new ClienteContatoServices(_context);
+            //_context = context;
+            //_service = new EmailsServices(_context);
+            //_Cservice = new ClientesServices(_context);
+            //_Tservice = new TelefonesServices(_context);
+            //_CCservice = new ClienteContatoServices(_context);
         }
 
         //GET api/values
