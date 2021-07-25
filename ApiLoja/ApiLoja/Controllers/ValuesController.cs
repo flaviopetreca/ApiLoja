@@ -10,20 +10,15 @@ namespace ApiLoja.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
-        
-        //readonly Context _context;
-        //readonly EmailsServices _service;
-        //readonly ClientesServices _Cservice;
-        //readonly TelefonesServices _Tservice;
-        //readonly ClienteContatoServices _CCservice;
-        
+
+        readonly Context _context;
+        readonly ClientesServices _service;
+
+
         public ValuesController(Context context)
         {
-            //_context = context;
-            //_service = new EmailsServices(_context);
-            //_Cservice = new ClientesServices(_context);
-            //_Tservice = new TelefonesServices(_context);
-            //_CCservice = new ClienteContatoServices(_context);
+            _context = context;
+            _service = new ClientesServices(_context);
         }
 
         //GET api/values
@@ -31,42 +26,42 @@ namespace ApiLoja.Controllers
         public string Get()
         {
 
-            //Clientes cliente = new Clientes()
-            //{
-            //    CPF = "22222222222",
-            //    DataNascimento = DateTime.Now,
-            //    Endereco = "rua bucarest, n8",
-            //    NomeCliente = "Flavio Petreca dos Santos"
-            //};
+            if (_service.Buscar().Count == 0)
+            {
+                List<Clientes> clientes = new List<Clientes>();
 
+                clientes.Add(new Clientes()
+                {
+                    CPF = "22222222222",
+                    DataNascimento = DateTime.Now,
+                    Endereco = "rua bucarest, n8",
+                    Nome = "Flavio Petreca dos Santos",
+                    Email = "flavio@email.com",
+                    Email2 = "flavio@email2.com",
+                    Telefone = "11333333333",
+                    Telefone2 = "11222222222"
+                });
 
-            //Emails email = new Emails()
-            //{
-            //    Email = "flaviopetreca@hotmail.com"
-            //};
-
-            //Telefones telefone = new Telefones()
-            //{
-            //    numeroTelefone = "11999999999"
-            //};
-
-            //ClientesContato clienteContato = new ClientesContato()
-            //{
-            //    IdCliente = 1,
-            //    IdEmail = 2,
-            //    IdTelefone = 2            };
-
-
-            //_service.Inserir(email);
-            //_Cservice.Inserir(cliente);
-            //_Tservice.Inserir(telefone);
-            //_CCservice.Inserir(clienteContato);
-
-
-
+                clientes.Add(new Clientes()
+                {
+                    CPF = "22222222222",
+                    DataNascimento = DateTime.Now,
+                    Endereco = "rua Osasco, n8",
+                    Nome = "Allan Rogério dos Santos",
+                    Email = "allan@email.com",
+                    Email2 = "allan@email2.com",
+                    Telefone = "11444444444",
+                    Telefone2 = "11555555555"
+                });
+                
+                foreach (var item in clientes)
+                {
+                    _service.Inserir(item);
+                }
+            }
             //eturn service.Buscar();
             return "Passou!!";
-            
+
         }
 
         // GET api/values/5
