@@ -38,7 +38,7 @@ namespace ApiLoja.Repository
                 .Where(_ => _.Id == clientes.Id)
                 .FirstOrDefault();
 
-            retorno.NomeCliente = clientes.NomeCliente;
+            retorno.Nome = clientes.Nome;
             retorno.CPF = clientes.CPF;
             retorno.Endereco = clientes.Endereco;
             retorno.DataNascimento = clientes.DataNascimento;
