@@ -44,8 +44,8 @@ namespace ApiLoja
             {
                 app.UseHsts();
             }
-
-            app.UseCors(option => option.AllowAnyOrigin()); ;
+            
+            app.UseCors(option => option.AllowAnyOrigin());
             //app.UseHttpsRedirection();
             app.UseMvc();
         }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ApiLoja.Models;
 using ApiLoja.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -21,6 +22,7 @@ namespace ApiLoja.Controllers
             _service = new ClientesServices(_context);
         }
         // GET: api/Clientes
+        [AllowAnonymous]
         [HttpGet]
         public List<Clientes> Get()
         {
@@ -40,6 +42,7 @@ namespace ApiLoja.Controllers
 
 
         // GET api/values/5
+        [AllowAnonymous]
         [HttpGet("{id}")]
         public ActionResult<Clientes> Get(int id)
         {
@@ -53,7 +56,7 @@ namespace ApiLoja.Controllers
             }
         }
 
-       
+        [AllowAnonymous]
         [HttpPost]
         public void Post([FromBody] Clientes clientes)
         {
@@ -72,6 +75,7 @@ namespace ApiLoja.Controllers
         }
 
         // PUT: api/Clientes/5
+        [AllowAnonymous]
         [HttpPut()]
         public void Put([FromBody] Clientes clientes)
         {
@@ -89,6 +93,7 @@ namespace ApiLoja.Controllers
         }
 
         // DELETE: api/ApiWithActions/5
+        [AllowAnonymous]
         [HttpDelete("{id}")]
         public void Delete(int Id)
         {
