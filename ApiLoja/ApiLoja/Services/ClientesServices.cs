@@ -1,10 +1,7 @@
 ﻿using ApiLoja.Models;
 using ApiLoja.Repository;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ApiLoja.Services
 {

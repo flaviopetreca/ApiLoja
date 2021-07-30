@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using ApiLoja.Models;
@@ -58,18 +59,29 @@ namespace ApiLoja.Controllers
 
         [AllowAnonymous]
         [HttpPost]
-        public void Post([FromBody] Clientes clientes)
+        public void Post([FromBody] dynamic clientes)
         {
             try
             {
+                string data = clientes.dataNascimento;
 
-                _service.Inserir(clientes);
+                var cliente = new Clientes()
+                {
+                    Nome = clientes.nome,
+                    CPF = clientes.cpf,
+                    DataNascimento = ConverterData(data),
+                    Email = clientes.email,
+                    Email2 = clientes.email2,
+                    Endereco = clientes.endereco,
+                    Telefone = clientes.telefone,
+                    Telefone2 = clientes.telefone2
+                };
+                _service.Inserir(cliente);
 
             }
-            catch (System.Exception)
+            catch (System.Exception ex)
             {
-
-                throw;
+                throw new Exception(ex.Message);
             }
 
         }
@@ -77,18 +89,31 @@ namespace ApiLoja.Controllers
         // PUT: api/Clientes/5
         [AllowAnonymous]
         [HttpPut()]
-        public void Put([FromBody] Clientes clientes)
+        public void Put([FromBody] dynamic clientes)
         {
             try
             {
-
-                _service.Editar(clientes);
+                string data = clientes.dataNascimento;
+                
+                var cliente = new Clientes()
+                {
+                    Id = clientes.id,
+                    Nome = clientes.nome,
+                    CPF = clientes.cpf,
+                    DataNascimento = ConverterData(data),
+                    Email = clientes.email,
+                    Email2 = clientes.email2,
+                    Endereco = clientes.endereco,
+                    Telefone = clientes.telefone,
+                    Telefone2 = clientes.telefone2
+                };
+                _service.Editar(cliente);
 
             }
-            catch (System.Exception)
+            catch (System.Exception ex)
             {
 
-                throw;
+                throw new Exception(ex.Message);
             }
         }
 
@@ -108,6 +133,12 @@ namespace ApiLoja.Controllers
 
                 throw;
             }
+        }
+
+        private DateTime ConverterData(string data)
+        {
+            var dataRetorno = DateTime.ParseExact(data, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+            return dataRetorno;
         }
     }
 }
