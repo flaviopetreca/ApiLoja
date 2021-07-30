@@ -42,6 +42,10 @@ namespace ApiLoja.Repository
             retorno.CPF = clientes.CPF;
             retorno.Endereco = clientes.Endereco;
             retorno.DataNascimento = clientes.DataNascimento;
+            retorno.Email = clientes.Email;
+            retorno.Email2 = clientes.Email2;
+            retorno.Telefone = clientes.Telefone;
+            retorno.Telefone2 = clientes.Telefone2;
 
             _context.Clientes.Update(retorno);
             _context.SaveChanges();
