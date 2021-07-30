@@ -63,19 +63,7 @@ namespace ApiLoja.Controllers
         {
             try
             {
-                string data = clientes.dataNascimento;
-
-                var cliente = new Clientes()
-                {
-                    Nome = clientes.nome,
-                    CPF = clientes.cpf,
-                    DataNascimento = ConverterData(data),
-                    Email = clientes.email,
-                    Email2 = clientes.email2,
-                    Endereco = clientes.endereco,
-                    Telefone = clientes.telefone,
-                    Telefone2 = clientes.telefone2
-                };
+                var cliente = MontarCliente(clientes);
                 _service.Inserir(cliente);
 
             }
@@ -93,20 +81,8 @@ namespace ApiLoja.Controllers
         {
             try
             {
-                string data = clientes.dataNascimento;
-                
-                var cliente = new Clientes()
-                {
-                    Id = clientes.id,
-                    Nome = clientes.nome,
-                    CPF = clientes.cpf,
-                    DataNascimento = ConverterData(data),
-                    Email = clientes.email,
-                    Email2 = clientes.email2,
-                    Endereco = clientes.endereco,
-                    Telefone = clientes.telefone,
-                    Telefone2 = clientes.telefone2
-                };
+                var cliente = MontarCliente(clientes);
+               
                 _service.Editar(cliente);
 
             }
@@ -133,6 +109,23 @@ namespace ApiLoja.Controllers
 
                 throw;
             }
+        }
+
+        private Clientes MontarCliente(dynamic clientes)
+        {
+            string data = clientes.dataNascimento;
+            return new Clientes()
+            {
+                Id = clientes.id == null ? 0 : clientes.id,
+                Nome = clientes.nome,
+                CPF = clientes.cpf,
+                DataNascimento = ConverterData(data),
+                Email = clientes.email,
+                Email2 = clientes.email2,
+                Endereco = clientes.endereco,
+                Telefone = clientes.telefone,
+                Telefone2 = clientes.telefone2
+            };
         }
 
         private DateTime ConverterData(string data)
