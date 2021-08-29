@@ -130,7 +130,11 @@ namespace ApiLoja.Controllers
 
         private DateTime ConverterData(string data)
         {
-            var dataRetorno = DateTime.ParseExact(data, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+            if (!data.Contains("/"))
+            {
+              data = data.Substring(0, 2)+ "/" + data.Substring(2, 2) + "/" + data.Substring(4,4);
+            }
+            var dataRetorno = DateTime.ParseExact(data, "dd/MM/yyyy", null);
             return dataRetorno;
         }
     }
